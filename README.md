@@ -31,6 +31,10 @@ npm run dev
 Сборка проекта для развертывания:
 npm run build
 
+## Deploy проекта
+
+https://co-magic-meeting.vercel.app/
+
 ## Авторы
 
 Призов Роман

@@ -41,6 +41,7 @@ const layoutStyle = {
 
 export const ChatPage = observer(() => {
   const [messages, setMessages] = useState();
+  const [intervalId, setIntervalId] = useState(null);
 
   const params = useParams();
 
@@ -68,7 +69,11 @@ export const ChatPage = observer(() => {
     };
 
     fetchData();
-  }, []);
+    const id = setInterval(fetchData, 3000);
+    setIntervalId(id);
+
+    return () => clearInterval(intervalId);
+  }, [uid, secondUid]);
 
   const formatTimestamp = (timestamp) => {
     const date = new Date(
