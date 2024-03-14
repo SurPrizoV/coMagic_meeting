@@ -1,8 +1,35 @@
-# React + Vite
+# Знакомства - React + Vite приложение
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Этот проект - веб-приложение для знакомств, разработанное с использованием React, Vite, Ant Design и MobX.
 
-Currently, two official plugins are available:
+## Описание
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Это веб-приложение предоставляет платформу для пользователей, чтобы они могли зарегистрироваться, создать профиль, просматривать профили других пользователей и связываться с ними.
+
+## Технологии
+
+React: Библиотека для создания пользовательских интерфейсов.
+Vite: Быстрый сборщик для веб-разработки.
+Ant Design: Компонентный набор для React, предоставляющий готовые к использованию компоненты пользовательского интерфейса.
+MobX: Библиотека для управления состоянием приложения.
+Функциональности
+
+Регистрация и аутентификация пользователей.
+Создание и редактирование профиля пользователя.
+Просмотр профилей других пользователей.
+Отправка и получение сообщений между пользователями.
+
+## Установка и запуск
+
+Установка зависимостей:
+npm install
+
+Запуск приложения в режиме разработки:
+npm run dev
+
+Сборка проекта для развертывания:
+npm run build
+
+## Авторы
+
+Призов Роман
