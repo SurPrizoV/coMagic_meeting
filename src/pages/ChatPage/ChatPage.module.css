@@ -1,0 +1,43 @@
+.header_my {
+    background-color: #dbd9d9;
+    padding: 12px 8px;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+    gap: 16px;
+}
+
+.header {
+    background-color: #eaeaea;
+    padding: 12px 8px;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.message {
+    border: 0.5px solid rgba(0, 0, 0, 0.45);
+    border-radius: 5px;
+    min-width: 100%;
+}
+
+.message_body_my {
+    padding: 0 8px;
+    text-align: -webkit-right;
+}
+
+.message_body {
+    padding: 0 8px;
+}
+
+.time {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 12px;
+}

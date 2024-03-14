@@ -1,0 +1,11 @@
+.badges {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}

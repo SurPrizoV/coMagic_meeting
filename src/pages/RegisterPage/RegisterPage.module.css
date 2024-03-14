@@ -1,0 +1,12 @@
+.form {
+    border: 0.5px solid rgba(0, 0, 0, 0.45);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.header {
+    background-color: #eaeaea;
+    padding: 8px 6px;
+}
