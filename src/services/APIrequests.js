@@ -112,24 +112,6 @@ export async function getUserData(uid) {
   }
 }
 
-// export async function handleSendMessage(message, displayName, photo) {
-//   const data = {
-//     uid: localStorage.getItem("access"),
-//     description: message,
-//     displayName: displayName,
-//     photo: photo,
-//     createdAt: serverTimestamp(),
-//   };
-
-//   const messagesCollection = collection(firestore, "messages");
-
-//   try {
-//     await addDoc(messagesCollection, data);
-//   } catch (error) {
-//     console.error("Ошибка при отправке сообщения,", error);
-//   }
-// }
-
 export async function handleSendMessage(message, displayName, photo, uid, recipientUid) {
   const data = {
     senderUid: uid,
@@ -148,24 +130,6 @@ export async function handleSendMessage(message, displayName, photo, uid, recipi
     console.error("Ошибка при отправке сообщения,", error);
   }
 }
-
-// export async function getAllMessages() {
-//   const messagesCollection = collection(firestore, "messages");
-//   const messagesQuery = query(messagesCollection, orderBy("createdAt", "desc"));
-
-//   try {
-//     const querySnapshot = await getDocs(messagesQuery);
-
-//     const messages = [];
-//     querySnapshot.forEach((doc) => {
-//       messages.push({ id: doc.id, ...doc.data() });
-//     });
-
-//     return messages;
-//   } catch (error) {
-//     console.error("Ошибка при получении сообщений", error);
-//   }
-// }
 
 export async function getAllMessages(currentUserUid, otherUserUid) {
   const messagesCollection = collection(firestore, "messages");
