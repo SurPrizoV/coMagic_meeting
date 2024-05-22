@@ -21,13 +21,6 @@ export const Header = () => {
                 <Logo />
               </Link>
             ),
-          },
-          {
-            title: (
-              <Link to={"/profile"}>
-                Моя страница
-              </Link>
-            ),
           }
         ]}
       />

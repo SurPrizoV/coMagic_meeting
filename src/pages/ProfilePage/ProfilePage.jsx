@@ -1,17 +1,14 @@
-import { Header } from "../../components/Header/Header";
 import { useEffect, useState } from "react";
 import {
-  Breadcrumb,
   Layout,
   Button,
-  Card,
-  Flex,
   Typography,
   Tag,
   Modal,
   Input,
   Select,
   Spin,
+  Image,
 } from "antd";
 import s from "./ProfilePage.module.css";
 import {
@@ -21,26 +18,15 @@ import {
   handleUpdateProfile,
   handleUploadPhoto,
 } from "../../services/APIrequests";
+import { PageLayout } from "../../layout/Layout";
+import { Logo } from "../../components/Logo/Logo";
 
 const { Content } = Layout;
 
-const cardStyle = {
-  width: 620,
-};
-const imgStyle = {
-  display: "block",
-  width: 273,
-  objectFit: "cover",
-};
-const layoutStyle = {
-  borderRadius: 8,
-  overflow: "hidden",
-  width: "100dvw",
-  height: "100dvh",
-};
-
 const filterOption = (input, option) =>
   (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
+
+const badgeColors = ["#108ee9", "#87d068", "#2db7f5"];
 
 export const ProfilePage = () => {
   const [user, setUser] = useState({
@@ -159,68 +145,52 @@ export const ProfilePage = () => {
   };
 
   return (
-    <Layout style={layoutStyle}>
-      <Header />
-      <Content
-        style={{
-          margin: "0 16px",
-        }}
-      >
-        <Breadcrumb
+    <PageLayout
+      contentChildren={
+        <Content
           style={{
-            margin: "16px 0",
+            margin: "8px 0px",
           }}
-        ></Breadcrumb>
-        <Spin spinning={loading} size="large">
-          {error ? (
-            <p style={{ color: "red" }}>{error}</p>
-          ) : (
-            <Card
-              hoverable
-              style={cardStyle}
-              styles={{
-                body: {
-                  padding: 0,
-                  overflow: "hidden",
-                },
-              }}
-            >
-              <Flex justify="space-between">
-                <img
-                  alt="avatar"
+        >
+          <Spin spinning={loading} size="large">
+            {error ? (
+              <p style={{ color: "red" }}>{error}</p>
+            ) : (
+              <div className={s.container}>
+                <Image
+                  style={{ borderRadius: "10px" }}
+                  width={380}
                   src={user.photo ? user.photo : photoURL}
-                  style={imgStyle}
                 />
-                <Flex
-                  vertical
-                  align="flex-end"
-                  justify="space-between"
-                  style={{
-                    padding: 32,
-                  }}
-                >
+                <div className={s.description}>
                   <Typography.Title level={3}>
                     {user.firstName} {user.lastName}
                   </Typography.Title>
-                  <Typography.Title level={5}>{user.age}</Typography.Title>
-                  <Typography.Title level={5}>{user.city}</Typography.Title>
-                  <Typography.Title level={5}>{user.gender}</Typography.Title>
-                  <div className={s.badges}>
-                    {user.hobbys &&
-                      user.hobbys.map((hobby) => {
-                        let color = "#108ee9";
-                        if (hobby.length > 5) {
-                          color = "#87d068";
-                        } else if (hobby.length < 8) {
-                          color = "#2db7f5";
-                        }
-
-                        return (
-                          <Tag color={color} key={hobby}>
-                            {hobby}
-                          </Tag>
-                        );
-                      })}
+                  <Typography.Title level={5}>
+                    Возраст: {user.age}
+                  </Typography.Title>
+                  <Typography.Title level={5}>
+                    Город: {user.city}
+                  </Typography.Title>
+                  <Typography.Title level={5}>
+                    Пол: {user.gender}
+                  </Typography.Title>
+                  <div>
+                    <Typography.Title level={4}>Увлечения:</Typography.Title>
+                    <div className={s.badges}>
+                      {user.hobbys &&
+                        user.hobbys.map((hobby) => {
+                          const color =
+                            badgeColors[
+                              Math.floor(Math.random() * badgeColors.length)
+                            ];
+                          return (
+                            <Tag color={color} key={hobby}>
+                              {hobby}
+                            </Tag>
+                          );
+                        })}
+                    </div>
                   </div>
                   <Button type="primary" onClick={showModal}>
                     Редактировать
@@ -230,8 +200,11 @@ export const ProfilePage = () => {
                     open={isModalOpen}
                     onOk={handleOk}
                     onCancel={handleCancel}
+                    okText="Готово"
+                    cancelText="Отмена"
                   >
                     <Input
+                      style={{ marginBottom: "8px" }}
                       placeholder="Имя"
                       value={user.firstName}
                       onChange={(e) =>
@@ -242,6 +215,7 @@ export const ProfilePage = () => {
                       }
                     />
                     <Input
+                      style={{ marginBottom: "8px" }}
                       placeholder="Фамилия"
                       value={user.lastName}
                       onChange={(e) =>
@@ -252,6 +226,7 @@ export const ProfilePage = () => {
                       }
                     />
                     <Input
+                      style={{ marginBottom: "8px" }}
                       placeholder="Возраст"
                       value={user.age}
                       onChange={(e) =>
@@ -262,6 +237,7 @@ export const ProfilePage = () => {
                       }
                     />
                     <Input
+                      style={{ marginBottom: "8px" }}
                       placeholder="Город"
                       value={user.city}
                       onChange={(e) =>
@@ -272,6 +248,7 @@ export const ProfilePage = () => {
                       }
                     />
                     <Select
+                      style={{ marginBottom: "8px" }}
                       showSearch
                       placeholder="Выбирите пол"
                       optionFilterProp="children"
@@ -290,7 +267,7 @@ export const ProfilePage = () => {
                       ]}
                     />
                     <Select
-                      style={{ width: "200px" }}
+                      style={{ width: "200px", marginBottom: "8px" }}
                       showSearch
                       mode="multiple"
                       placeholder="Выбирите хобби"
@@ -344,13 +321,10 @@ export const ProfilePage = () => {
                     <div className={s.badges}>
                       {user.hobbys &&
                         user.hobbys.map((hobby) => {
-                          let color = "#108ee9";
-                          if (hobby.length > 5) {
-                            color = "#87d068";
-                          } else if (hobby.length < 8) {
-                            color = "#2db7f5";
-                          }
-
+                          const color =
+                            badgeColors[
+                              Math.floor(Math.random() * badgeColors.length)
+                            ];
                           return (
                             <Tag color={color} key={hobby}>
                               {hobby}
@@ -376,12 +350,13 @@ export const ProfilePage = () => {
                       )}
                     </Spin>
                   </Modal>
-                </Flex>
-              </Flex>
-            </Card>
-          )}
-        </Spin>
-      </Content>
-    </Layout>
+                </div>
+              </div>
+            )}
+          </Spin>
+        </Content>
+      }
+      footerChildren={<Logo />}
+    />
   );
 };
